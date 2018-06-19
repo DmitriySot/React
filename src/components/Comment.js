@@ -1,12 +1,18 @@
 import React, {Component} from 'react'
+import PropTypes from 'prop-types'
 
-class Comment extends Component {
+class Comment extends Component{
+  static propTypes = {
+
+  }
+
   render() {
     const {comment} = this.props
-    return(
+    return (
       <div>
         <p>{comment.text}</p> by <b>{comment.user}</b>
       </div>
+
     )
   }
 }

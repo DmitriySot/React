@@ -1,19 +1,31 @@
 import React, {Component} from 'react'
-import Article from './Article'
+import PropTypes from 'prop-types'
 import {articles} from '../fixtures'
+import Article from './Article'
+import accordion  from '../decorators/accordion'
 
-class ArticleList extends Component {
+class ArticleList extends Component{
+  static propTypes = {
+
+  }
+
+
   render() {
-    return(
+    const {openItemId, toggleOpenItem} = this.props
+    return (
       <ul>
         {articles.map(article =>
-          <li key = {article.id}>
-            <Article article = {article} />
-
-          </li>
-        )}
+        <li key = {article.id}>
+          <Article
+            article = {article}
+            toggleOpen = {toggleOpenItem(article.id)}
+            isOpen = {openItemId === article.id}
+          />
+        </li>)}
       </ul>
     )
   }
+
 }
-export default ArticleList
+
+export default accordion(ArticleList)

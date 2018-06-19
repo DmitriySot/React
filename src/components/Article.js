@@ -1,35 +1,37 @@
 import React, {Component} from 'react'
+import PropTypes from 'prop-types'
 import CommentList from './CommentList'
 
-class Article extends Component {
-  state = {
-    isOpen: null
-  }
 
+class Article extends Component{
+  static propTypes = {
+
+  }
   render() {
-    const {isOpen} = this.state
-    const {article} = this.props
-    return(
-      <div>
-        <h2>{article.title}</h2>
-        <button onClick = {this.toggleOpen}>{isOpen? 'close' : 'open'}</button>
-        {this.showText()}
-      </div>
-    )
-  }
-  toggleOpen = () => {
-    this.setState({
-      isOpen: !this.state.isOpen
-    })
-  }
-  showText = () => {
-    if(!this.state.isOpen) return null
-    const {article} = this.props
+
+    const {article, isOpen, toggleOpen} = this.props
+    console.info("__article__", article)
+
     return (
       <div>
-        {article.text}
-        <CommentList comments = {article.comments} />
+        <h3>{article.title}</h3>
+        <button onClick = {toggleOpen}>{isOpen? 'close' : 'open'}</button>
+        {this.showText()}
       </div>
+
+    )
+  }
+
+  showText = () => {
+    const {article, isOpen} = this.props
+    if(!isOpen) return null
+
+    return (
+      <div>
+        <div>{article.text}</div>
+        <CommentList comments = {article.comments}/>
+      </div>
+
     )
   }
 }
