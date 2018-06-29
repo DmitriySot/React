@@ -1,7 +1,8 @@
-import React, {Component} from 'react'
+import React, {Component, Fragment} from 'react'
 import PropTypes from 'prop-types'
 import Comment from './Comment'
 import toggleOpen from '../decorators/toggleOpen'
+import CommentForm  from './CommentForm'
 
 class CommentList extends Component{
   static propTypes = {
@@ -30,9 +31,11 @@ class CommentList extends Component{
         <Comment comment = {comment} />
       </li>)
     return(
-      <ul>
-        {commentsElement}
-      </ul>
+      <Fragment>
+        <ul> {commentsElement} </ul>
+        <CommentForm />
+      </Fragment>
+
     )
   }
 }
