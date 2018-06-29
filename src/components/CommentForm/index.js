@@ -33,7 +33,7 @@ class CommentForm extends Component{
   getClassname = type => {
     if(this.state[type].length < limits[type].min || this.state[type].length > limits[type].max) return 'error'
     return ''
-    return
+    
   }
 
   handleChange = type => ev => {
